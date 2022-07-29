@@ -70,9 +70,17 @@
   /* so that configuration with `FT_CONFIG_OPTION_SYSTEM_ZLIB' might   */
   /* include the wrong `zconf.h' file, leading to errors.              */
 
-#define ZEXPORT
-  /* prevent zlib functions from being visible outside their object files */
-#define ZEXTERN  static
+  /* `HAVE_HIDDEN` should be defined if                                 */
+  /*                                                                    */
+  /*   __attribute__((visibility("hidden")))                            */
+  /*                                                                    */
+  /* is supported by the compiler, which prevents internal symbols from */
+  /* being exported by the library.                                     */
+#if defined( __GNUC__ ) ||  defined( __clang__ )
+#define HAVE_HIDDEN  1
+#define ZEXPORT __attribute__((visibility("hidden")))
+#define ZEXTERN static
+#endif
 
 #define HAVE_MEMCPY  1
 #define Z_SOLO       1
