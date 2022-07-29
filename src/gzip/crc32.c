@@ -736,7 +736,7 @@ local z_word_t crc_word_big(
 #endif
 
 /* ========================================================================= */
-unsigned long ZEXPORT crc32_z(
+ZEXTERN unsigned long ZEXPORT crc32_z(
     unsigned long crc,
     const unsigned char FAR *buf,
     z_size_t len)
@@ -1060,7 +1060,7 @@ unsigned long ZEXPORT crc32_z(
 #endif
 
 /* ========================================================================= */
-unsigned long ZEXPORT crc32(
+ZEXTERN unsigned long ZEXPORT crc32(
     unsigned long crc,
     const unsigned char FAR *buf,
     uInt len)
@@ -1069,7 +1069,7 @@ unsigned long ZEXPORT crc32(
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine64(
+ZEXTERN uLong ZEXPORT crc32_combine64(
     uLong crc1,
     uLong crc2,
     z_off64_t len2)
@@ -1081,7 +1081,7 @@ uLong ZEXPORT crc32_combine64(
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine(
+ZEXTERN uLong ZEXPORT crc32_combine(
     uLong crc1,
     uLong crc2,
     z_off_t len2)
@@ -1090,7 +1090,7 @@ uLong ZEXPORT crc32_combine(
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine_gen64(
+ZEXTERN uLong ZEXPORT crc32_combine_gen64(
     z_off64_t len2)
 {
 #ifdef DYNAMIC_CRC_TABLE
@@ -1100,14 +1100,14 @@ uLong ZEXPORT crc32_combine_gen64(
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine_gen(
+ZEXTERN uLong ZEXPORT crc32_combine_gen(
     z_off_t len2)
 {
     return crc32_combine_gen64(len2);
 }
 
 /* ========================================================================= */
-uLong crc32_combine_op(
+ZEXTERN uLong crc32_combine_op(
     uLong crc1,
     uLong crc2,
     uLong op)

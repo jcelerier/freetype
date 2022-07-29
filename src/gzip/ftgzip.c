@@ -78,7 +78,7 @@
   /* being exported by the library.                                     */
 #if defined( __GNUC__ ) ||  defined( __clang__ )
 #define HAVE_HIDDEN  1
-#define ZEXPORT
+#define ZEXPORT __attribute__((visibility("hidden")))
 #define ZEXTERN      static
 #endif
 
