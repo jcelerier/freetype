@@ -195,7 +195,7 @@ local z_crc_t x2nmodp(z_off64_t n, unsigned k) {
  * Build the tables for byte-wise and braided CRC-32 calculations, and a table
  * of powers of x for combining CRC-32s.
  */
-local z_crc_t FAR crc_table[256];
+static local z_crc_t FAR crc_table[256];
 #ifdef W
    local z_word_t FAR crc_big_table[256];
    local z_crc_t FAR crc_braid_table[W][256];
@@ -1020,7 +1020,7 @@ unsigned long ZEXPORT crc32_z(unsigned long crc, const unsigned char FAR *buf,
 #endif
 
 /* ========================================================================= */
-unsigned long ZEXPORT crc32(unsigned long crc, const unsigned char FAR *buf,
+ZEXTERN unsigned long ZEXPORT crc32(unsigned long crc, const unsigned char FAR *buf,
                             uInt len) {
     return crc32_z(crc, buf, len);
 }
@@ -1028,7 +1028,7 @@ unsigned long ZEXPORT crc32(unsigned long crc, const unsigned char FAR *buf,
 #ifndef Z_FREETYPE
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine64(uLong crc1, uLong crc2, z_off64_t len2) {
+ZEXTERN uLong ZEXPORT crc32_combine64(uLong crc1, uLong crc2, z_off64_t len2) {
 #ifdef DYNAMIC_CRC_TABLE
     once(&made, make_crc_table);
 #endif /* DYNAMIC_CRC_TABLE */
@@ -1036,12 +1036,12 @@ uLong ZEXPORT crc32_combine64(uLong crc1, uLong crc2, z_off64_t len2) {
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine(uLong crc1, uLong crc2, z_off_t len2) {
+ZEXTERN uLong ZEXPORT crc32_combine(uLong crc1, uLong crc2, z_off_t len2) {
     return crc32_combine64(crc1, crc2, (z_off64_t)len2);
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine_gen64(z_off64_t len2) {
+ZEXTERN uLong ZEXPORT crc32_combine_gen64(z_off64_t len2) {
 #ifdef DYNAMIC_CRC_TABLE
     once(&made, make_crc_table);
 #endif /* DYNAMIC_CRC_TABLE */

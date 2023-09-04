@@ -70,7 +70,7 @@
   /* so that configuration with `FT_CONFIG_OPTION_SYSTEM_ZLIB' might   */
   /* include the wrong `zconf.h' file, leading to errors.              */
 
-#define ZEXPORT
+#define ZEXPORT static
   /* prevent zlib functions from being visible outside their object files */
 #define ZEXTERN  static
 
