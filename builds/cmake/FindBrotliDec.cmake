@@ -19,25 +19,12 @@
 #   BROTLIDEC_INCLUDE_DIRS
 #   BROTLIDEC_LIBRARIES
 
-find_package(PkgConfig QUIET)
-
-pkg_check_modules(PC_BROTLIDEC QUIET libbrotlidec)
-
-if (PC_BROTLIDEC_VERSION)
-  set(BROTLIDEC_VERSION "${PC_BROTLIDEC_VERSION}")
-endif ()
-
-
 find_path(BROTLIDEC_INCLUDE_DIRS
   NAMES brotli/decode.h
-  HINTS ${PC_BROTLIDEC_INCLUDEDIR}
-        ${PC_BROTLIDEC_INCLUDE_DIRS}
   PATH_SUFFIXES brotli)
 
 find_library(BROTLIDEC_LIBRARIES
-  NAMES brotlidec
-  HINTS ${PC_BROTLIDEC_LIBDIR}
-        ${PC_BROTLIDEC_LIBRARY_DIRS})
+  NAMES brotlidec)
 
 
 include(FindPackageHandleStandardArgs)
